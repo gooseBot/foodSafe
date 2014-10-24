@@ -21,6 +21,7 @@ void setup()
   //calcMin2UnlockTime();
   EEPROM_readAnything(0, _myConfig);
   DateTime now = getTimeDate();
+
   if (now.unixtime() > _myConfig.openTime.unixtime()){
     openDoor(true);
     displayCountDown(0);
