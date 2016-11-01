@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\libraries\Servo\src;C:\Users\Eric\Documents\Arduino\libraries\jeelib;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\Users\Eric\Documents\Arduino\libraries\RTClib;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Users\Eric\Documents\Arduino\libraries\serLCD;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\EEPROM\src;C:\Users\Eric\Documents\Arduino\libraries\EEPROMAnything;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\EEPROM\src\utility;C:\Users\Eric\Documents\Arduino\libraries\EEPROMAnything\utility;C:\Users\Eric\Documents\Arduino\libraries\jeelib\utility;C:\Users\Eric\Documents\Arduino\libraries\RTClib\utility;C:\Users\Eric\Documents\Arduino\libraries\serLCD\utility;C:\Program Files (x86)\Arduino\libraries\Servo\src\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Users\Eric\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\standard;C:\Users\Eric\Documents\Arduino\foodSafe;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\standard;C:\Program Files (x86)\Arduino\libraries\Servo\src;C:\Users\Eric\Documents\Arduino\libraries\jeelib;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\Users\Eric\Documents\Arduino\libraries\RTClib;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Users\Eric\Documents\Arduino\libraries\serLCD;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\EEPROM\src;C:\Users\Eric\Documents\Arduino\libraries\EEPROMAnything;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\ldv0cdmw.vr4\Micro Platforms\default\debuggers\VM_DBG;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\ldv0cdmw.vr4\Micro Platforms\default\debuggers;C:\Users\Eric\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Arduino\libraries\Servo\src;C:\Users\Eric\Documents\Arduino\libraries\jeelib;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\Users\Eric\Documents\Arduino\libraries\RTClib;C:\Users\Eric\Documents\Arduino\libraries\Time;C:\Users\Eric\Documents\Arduino\libraries\TimeAlarms;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Users\Eric\Documents\Arduino\libraries\serLCD;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\EEPROM\src;C:\Users\Eric\Documents\Arduino\libraries\EEPROMAnything;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\EEPROM\src\utility;C:\Users\Eric\Documents\Arduino\libraries\EEPROMAnything\utility;C:\Users\Eric\Documents\Arduino\libraries\jeelib\utility;C:\Users\Eric\Documents\Arduino\libraries\RTClib\utility;C:\Users\Eric\Documents\Arduino\libraries\serLCD\utility;C:\Program Files (x86)\Arduino\libraries\Servo\src\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\utility;C:\Users\Eric\Documents\Arduino\libraries\Time\utility;C:\Users\Eric\Documents\Arduino\libraries\TimeAlarms\utility;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Users\Eric\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\standard;C:\Users\Eric\Documents\Arduino\foodSafe;C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;C:\Program Files (x86)\Arduino\hardware\arduino\avr\variants\standard;C:\Program Files (x86)\Arduino\libraries\Servo\src;C:\Users\Eric\Documents\Arduino\libraries\jeelib;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;C:\Users\Eric\Documents\Arduino\libraries\RTClib;C:\Users\Eric\Documents\Arduino\libraries\Time;C:\Users\Eric\Documents\Arduino\libraries\TimeAlarms;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src;C:\Users\Eric\Documents\Arduino\libraries\serLCD;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\EEPROM\src;C:\Users\Eric\Documents\Arduino\libraries\EEPROMAnything;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\ldv0cdmw.vr4\Micro Platforms\default\debuggers\VM_DBG;C:\Program Files (x86)\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\ldv0cdmw.vr4\Micro Platforms\default\debuggers;C:\Users\Eric\Documents\Arduino\libraries;C:\Program Files (x86)\Arduino\hardware\tools\avr/avr/include/;C:\Program Files (x86)\Arduino\hardware\tools\avr//avr/include/avr/;C:\Program Files (x86)\Arduino\hardware\tools\avr/lib\gcc\avr\4.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>C:\Users\Eric\Documents\Arduino\foodSafe\__vm\.foodSafe.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=106012;ARDUINO_AVR_UNO;ARDUINO_ARCH_AVR;__cplusplus=201103L;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -73,6 +73,8 @@
     <None Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\library.properties" />
     <None Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\library.properties" />
     <None Include="..\..\..\..\..\Program Files (x86)\Arduino\libraries\Servo\library.properties" />
+    <None Include="..\libraries\TimeAlarms\library.json" />
+    <None Include="..\libraries\TimeAlarms\library.properties" />
     <None Include="foodSafe.ino">
       <FileType>CppCode</FileType>
     </None>
@@ -119,6 +121,7 @@
     <ClInclude Include="..\libraries\jeelib\RF69_compat.h" />
     <ClInclude Include="..\libraries\RTClib\RTClib.h" />
     <ClInclude Include="..\libraries\serLCD\serLCD.h" />
+    <ClInclude Include="..\libraries\TimeAlarms\TimeAlarms.h" />
     <ClInclude Include="..\libraries\Time\Time.h" />
     <ClInclude Include="Visual Micro\.foodSafe.vsarduino.h" />
     <ClInclude Include="__vm\.foodSafe.vsarduino.h" />
@@ -165,6 +168,7 @@
     <ClCompile Include="..\libraries\jeelib\RF69_compat.cpp" />
     <ClCompile Include="..\libraries\RTClib\RTClib.cpp" />
     <ClCompile Include="..\libraries\serLCD\serLCD.cpp" />
+    <ClCompile Include="..\libraries\TimeAlarms\TimeAlarms.cpp" />
     <ClCompile Include="..\libraries\Time\DateStrings.cpp" />
     <ClCompile Include="..\libraries\Time\Time.cpp" />
   </ItemGroup>
@@ -176,6 +180,8 @@
     <Text Include="..\libraries\jeelib\keywords.txt" />
     <Text Include="..\libraries\RTClib\keywords.txt" />
     <Text Include="..\libraries\RTClib\README.txt" />
+    <Text Include="..\libraries\TimeAlarms\keywords.txt" />
+    <Text Include="..\libraries\TimeAlarms\readme.txt" />
     <Text Include="..\libraries\Time\keywords.txt" />
     <Text Include="..\libraries\Time\Readme.txt" />
   </ItemGroup>

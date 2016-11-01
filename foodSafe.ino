@@ -1,8 +1,10 @@
+
 #include <Servo.h> 
 #include <JeeLib.h>
 #include <Wire.h>
 #include "RTClib.h" 
-#include "Time.h"
+#include "TimeLib.h"
+#include <TimeAlarms.h>
 #include <SoftwareSerial.h>
 #include <serLCD.h>
 #include <EEPROM.h>
@@ -15,7 +17,9 @@ struct appConfig
 typedef struct appConfig AppConfig;
 AppConfig _myConfig;
 byte _lockButton=2;
-  
+DateTime openTimes[3];
+//openTimes(0) = new DateTime(0, 0, 0, 9, 0, 0);
+ 
 void setup() 
 { 
   //calcMin2UnlockTime();

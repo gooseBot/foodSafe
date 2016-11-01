@@ -70,9 +70,6 @@
     <Filter Include="src\_micro-api-readonly\libraries\SoftwareSerial\src">
       <UniqueIdentifier>{93513d13-cabb-449a-b3dd-a4e451693214}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\_micro-api-readonly\libraries\Time">
-      <UniqueIdentifier>{1b87c32d-6d2e-4af3-a835-6b450aeecc07}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\_micro-api-readonly\libraries\Wire">
       <UniqueIdentifier>{7793b4c4-2436-42a9-a03f-81a1e4c0e4ae}</UniqueIdentifier>
     </Filter>
@@ -81,6 +78,12 @@
     </Filter>
     <Filter Include="src\_micro-api-readonly\libraries\Wire\src\utility">
       <UniqueIdentifier>{c2430ff3-42d8-4980-864a-46ef80ba57cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\_micro-api-readonly\libraries\TimeAlarms">
+      <UniqueIdentifier>{90cb61c2-8940-4848-9cbd-0f2f5b37c811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\_micro-api-readonly\libraries\Time">
+      <UniqueIdentifier>{184c2fb1-0444-45c9-addd-142063c40660}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +102,12 @@
     </None>
     <None Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\library.properties">
       <Filter>src\_micro-api-readonly\libraries\Wire</Filter>
+    </None>
+    <None Include="..\libraries\TimeAlarms\library.json">
+      <Filter>src\_micro-api-readonly\libraries\TimeAlarms</Filter>
+    </None>
+    <None Include="..\libraries\TimeAlarms\library.properties">
+      <Filter>src\_micro-api-readonly\libraries\TimeAlarms</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -225,14 +234,17 @@
     <ClInclude Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\SoftwareSerial.h">
       <Filter>src\_micro-api-readonly\libraries\SoftwareSerial\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\libraries\Time\Time.h">
-      <Filter>src\_micro-api-readonly\libraries\Time</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\Wire.h">
       <Filter>src\_micro-api-readonly\libraries\Wire\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility\twi.h">
       <Filter>src\_micro-api-readonly\libraries\Wire\src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\TimeAlarms\TimeAlarms.h">
+      <Filter>src\_micro-api-readonly\libraries\TimeAlarms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\Time\Time.h">
+      <Filter>src\_micro-api-readonly\libraries\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -353,17 +365,20 @@
     <ClCompile Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\src\SoftwareSerial.cpp">
       <Filter>src\_micro-api-readonly\libraries\SoftwareSerial\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\libraries\Time\DateStrings.cpp">
-      <Filter>src\_micro-api-readonly\libraries\Time</Filter>
-    </ClCompile>
-    <ClCompile Include="..\libraries\Time\Time.cpp">
-      <Filter>src\_micro-api-readonly\libraries\Time</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\Wire.cpp">
       <Filter>src\_micro-api-readonly\libraries\Wire\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility\twi.c">
       <Filter>src\_micro-api-readonly\libraries\Wire\src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\TimeAlarms\TimeAlarms.cpp">
+      <Filter>src\_micro-api-readonly\libraries\TimeAlarms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\Time\DateStrings.cpp">
+      <Filter>src\_micro-api-readonly\libraries\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\Time\Time.cpp">
+      <Filter>src\_micro-api-readonly\libraries\Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -385,14 +400,20 @@
     <Text Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\SoftwareSerial\keywords.txt">
       <Filter>src\_micro-api-readonly\libraries\SoftwareSerial</Filter>
     </Text>
+    <Text Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\keywords.txt">
+      <Filter>src\_micro-api-readonly\libraries\Wire</Filter>
+    </Text>
+    <Text Include="..\libraries\TimeAlarms\keywords.txt">
+      <Filter>src\_micro-api-readonly\libraries\TimeAlarms</Filter>
+    </Text>
+    <Text Include="..\libraries\TimeAlarms\readme.txt">
+      <Filter>src\_micro-api-readonly\libraries\TimeAlarms</Filter>
+    </Text>
     <Text Include="..\libraries\Time\keywords.txt">
       <Filter>src\_micro-api-readonly\libraries\Time</Filter>
     </Text>
     <Text Include="..\libraries\Time\Readme.txt">
       <Filter>src\_micro-api-readonly\libraries\Time</Filter>
-    </Text>
-    <Text Include="..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\keywords.txt">
-      <Filter>src\_micro-api-readonly\libraries\Wire</Filter>
     </Text>
   </ItemGroup>
 </Project>
