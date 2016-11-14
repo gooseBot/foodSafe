@@ -2,11 +2,12 @@
 #include <Wire.h>
 #include "RTClib.h"
 
-RTC_DS1307 rtc;
+RTC_PCF8523 rtc;
 
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 void setup () {
+
   while (!Serial); // for Leonardo/Micro/Zero
 
   Serial.begin(57600);
@@ -15,7 +16,7 @@ void setup () {
     while (1);
   }
 
-  if (! rtc.isrunning()) {
+  if (! rtc.initialized()) {
     Serial.println("RTC is NOT running!");
     // following line sets the RTC to the date & time this sketch was compiled
     // rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));

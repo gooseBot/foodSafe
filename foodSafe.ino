@@ -1,6 +1,6 @@
 
+//#include "pitches.h"
 #include <Servo.h> 
-#include <JeeLib.h>
 #include <Wire.h>
 #include "RTClib.h" 
 #include "TimeLib.h"
@@ -9,7 +9,6 @@
 #include <serLCD.h>
 #include <EEPROM.h>
 #include "EEPROMAnything.h"
-ISR(WDT_vect) { Sleepy::watchdogEvent(); }
 struct appConfig
 {
   DateTime openTime;
@@ -17,66 +16,124 @@ struct appConfig
 typedef struct appConfig AppConfig;
 AppConfig _myConfig;
 byte _lockButton=2;
-DateTime openTimes[3];
-//openTimes(0) = new DateTime(0, 0, 0, 9, 0, 0);
+byte _doorCloseButton = 8;
+uint8_t _myAlarms[5];
+bool _doorLockStatus;
+serLCD _lcd(3);
  
 void setup() 
 { 
-  //calcMin2UnlockTime();
-  EEPROM_readAnything(0, _myConfig);
-  DateTime now = getTimeDate();
+  //setTimeDate();  //uncomment this to set the date time to the compile date time
+  Serial.begin(57600);
 
-  if (now.unixtime() > _myConfig.openTime.unixtime()){
-    openDoor(true);
-    displayCountDown(0);
-  } else {
-    int min2unlock = (_myConfig.openTime.unixtime()-now.unixtime())/60L;
-    lockDoorForDuration(min2unlock);    
-  }
+  _lcd.clear();
+  _lcd.setBrightness(10);
+
+  DateTime now = getTimeDate();
+  setTime(now.hour(),now.minute(), now.second(), now.month(), now.day(), now.year()); //set time to RTC time
+  printCurrentTime(0);
+
+  _myAlarms[0] = Alarm.alarmRepeat(10, 0, 0, openDoor);  
+  _myAlarms[1] = Alarm.alarmRepeat(12, 0, 0, openDoor);  
+  _myAlarms[2] = Alarm.alarmRepeat(15, 0, 0, openDoor);  
+  _myAlarms[3] = Alarm.alarmRepeat(17, 0, 0, openDoor);
+  _myAlarms[4] = Alarm.alarmRepeat(19, 0, 0, openDoor);
+  _myAlarms[5] = Alarm.alarmRepeat(21, 0, 0, openDoor);
+  repeats();                       //update the display now 
+  Alarm.timerRepeat(60, repeats);  //setup a repeat alarm to update lcd
+
+  //EEPROM_readAnything(0, _myConfig);
+  
   pinMode(_lockButton, INPUT_PULLUP);  //pull signal for button high
+  pinMode(_doorCloseButton, INPUT_PULLUP);
+
+  doorServo(false);   //on startup lock the door
+
+  if (_doorLockStatus) {
+    showLCDmessage("Door locked");
+  } else {
+    showLCDmessage("Door unlocked");
+  }
+
+  //playMelody();
 } 
  
 void loop() 
 { 
-  //if button pushed then lock the door and wait for the lock duration to end
-  int sensorVal = digitalRead(_lockButton);
-  if (sensorVal == LOW) {
-    int min2unlock=calcMin2UnlockTime();
-    printCurrentTime(min2unlock);
-    lockDoorForDuration(min2unlock);
+  //if button pushed then lock the door 
+  if (digitalRead(_lockButton) == LOW) {
+    if (digitalRead(_doorCloseButton) == LOW) {
+      doorServo(false);
+      Alarm.delay(300);
+      showLCDmessage("Door locked!");
+    }
+    else {
+      showLCDmessage("Cant lock door  open!");
+    }
   }   
+  Alarm.delay(100); 
 }
 
-void myDelay(unsigned long mseconds) {
-  // this delay keeps the arduino working, built in delay stops most activity
-  //   this type of delay seems to be needed to make the servo libarary work
-  //   not sure why.
-  unsigned long starttime = millis();   //going to count for a fixed time
-  unsigned long endtime = starttime;
-  while ((endtime - starttime) <= mseconds) // do the loop
+void repeats() {
+  time_t timeMidnight = previousMidnight(now());
+  time_t minSpan = 86400; //num seconds in a day
+  for (int i = 0; i < sizeof(_myAlarms); i++)
   {
-    endtime = millis();                  //keep the arduino awake.
-  }  
+    time_t alarmTime = Alarm.read(_myAlarms[i]) + timeMidnight;
+    if (alarmTime > now()) {
+      time_t alarmFromNowTime = alarmTime - now();
+      if (alarmFromNowTime < minSpan)
+        minSpan = alarmFromNowTime;
+    }      
+  }
+  displayCountDown(minSpan/60);
 }
 
-void openDoor(boolean openLock) {
+// function to be called when an alarm triggers:
+void openDoor() {
+  doorServo(true);
+  showLCDmessage("Door unlocked!");
+  playMelody();
+  Alarm.timerOnce(0, 20, 0, relockDoor);
+}
+
+void relockDoor() {
+  if (digitalRead(_doorCloseButton) == LOW) {
+    doorServo(false);  //relock door if door is still closed
+    showLCDmessage("Door relocked!");
+    Alarm.delay(60);
+  } else {
+    showLCDmessage("Can't relock,   door still open.");
+  }
+}
+
+void doorServo(boolean openLock) {
   static Servo myservo;  // create servo object to control a servo
   byte _doorServo=7;
   byte _open=0;
   byte _close=100;
+  _doorLockStatus = false;
   myservo.attach(_doorServo,544,2400);  
   if (openLock) {
-    myservo.write(_open); 
+    myservo.write(_open);     
   } else {
-    myservo.write(_close);    
+    //lock if door closed
+    if (digitalRead(_doorCloseButton) == LOW) {
+      myservo.write(_close);
+      _doorLockStatus = true;
+    } else {
+      //open lock if door is open
+      myservo.write(_open);
+      _doorLockStatus = false;
+    }
   }
-  myDelay(300);
+  Alarm.delay(300);
   myservo.detach();     
 }
 
 void printCurrentTime(int min2unlock) {
   DateTime now = getTimeDate();
-  Serial.begin(57600);
+  //Serial.begin(57600);
   Serial.print(now.year(), DEC);
   Serial.print('/');
   Serial.print(now.month(), DEC);
@@ -91,31 +148,7 @@ void printCurrentTime(int min2unlock) {
   Serial.println();
   Serial.print(min2unlock, DEC);
   Serial.println(); 
-  Serial.end();
-}
-
-void lockDoorForDuration(int numMinutes) {
-  openDoor(false);   //lock door
-  for (byte i = 0; i < numMinutes; ++i){ 
-    displayCountDown(numMinutes-i);  
-    Sleepy::loseSomeTime(57000);   // this low power sleep can only last 1 min.
-  }
-  displayCountDown(0);
-  openDoor(true);    //open door
-}
-
-int calcMin2UnlockTime() {  
-  unsigned long seconds2open;
-  DateTime openTime;
-  
-  DateTime now = getTimeDate();
-  openTime = now +(2*60*60);   //move forward 2 hours
-  //openTime = now +(5*60);        //move forward somme min
-  _myConfig.openTime = openTime;
-  EEPROM_writeAnything(0, _myConfig);
-
-  seconds2open=openTime.unixtime()-now.unixtime();   
-  return seconds2open/60;
+  //Serial.end();
 }
 
 DateTime getTimeDate() {
@@ -131,17 +164,39 @@ DateTime getTimeDate() {
   return now;  
 }
 
+void setTimeDate() {
+  RTC_DS1307 RTC;
+  Wire.begin();
+  RTC.begin();
+  pinMode(A3, OUTPUT);              //rtc power 5v
+  digitalWrite(A3, HIGH);           //trun it on
+  pinMode(A2, OUTPUT);              //rtc ground
+  digitalWrite(A2, LOW);            //turn on    
+  RTC.adjust(DateTime(F(__DATE__), F(__TIME__)));
+  digitalWrite(A3, LOW);            //trun off power to rtc for battery saving
+}
+
 void displayCountDown(int minutesLeft) {
-  serLCD lcd(3);  
-  lcd.clear();
-  lcd.setBrightness(10);
-  lcd.print(minutesLeft);
-  if (minutesLeft>1) {
-    lcd.print(" more minutes");
-  } else if (minutesLeft==1) {
-    lcd.print(" more minute!");
-  } else {
-    lcd.clear();
-    lcd.print("OPEN!");
-  }
+  // dont display countdown if door is open or unlocked
+  if (digitalRead(_doorCloseButton) == HIGH || !_doorLockStatus )
+    return;
+
+  _lcd.clear(); 
+  if (minutesLeft >=1440) {
+    _lcd.print("Done today :(");
+  } else if (minutesLeft > 0) {
+    if ((minutesLeft / 60) > 0) {
+      _lcd.print(minutesLeft / 60);
+      _lcd.print(" hr ");
+    }
+    _lcd.print(minutesLeft % 60);
+    _lcd.print(" more min");
+  } else if (minutesLeft == 0) {
+    _lcd.print("1 more minute!");
+  } 
+}
+
+void showLCDmessage(String message) {
+  _lcd.clear();
+  _lcd.print(message);
 }
