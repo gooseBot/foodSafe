@@ -17,7 +17,7 @@ typedef struct appConfig AppConfig;
 AppConfig _myConfig;
 byte _lockButton=2;
 byte _doorCloseButton = 8;
-uint8_t _myAlarms[5];
+uint8_t _myAlarms[6];
 bool _doorLockStatus;
 serLCD _lcd(3);
  
