@@ -1,3 +1,5 @@
+//copy libraries to below if needed.  Should work in local libraries dir but didnt!
+// C:\Users\Eric\Documents\Arduino\libraries
 #include <Servo.h> 
 #include "JeeLib.h"
 #include <Wire.h>
@@ -18,7 +20,7 @@ byte _lockButton=2;
   
 void setup() 
 { 
-  //calcMin2UnlockTime();
+  //calcMin2UnlockTime();  //use when debugging, run once to make a shorter timeout work
   EEPROM_readAnything(0, _myConfig);
   DateTime now = getTimeDate();
 
@@ -94,6 +96,7 @@ void lockDoorForDuration(int numMinutes) {
   openDoor(false);   //lock door
   for (byte i = 0; i < numMinutes; ++i){ 
     displayCountDown(numMinutes-i);  
+    printCurrentTime(numMinutes-1);
     Sleepy::loseSomeTime(57000);   // this low power sleep can only last 1 min.
   }
   displayCountDown(0);
@@ -106,7 +109,7 @@ int calcMin2UnlockTime() {
   
   DateTime now = getTimeDate();
   openTime = now +(2*60*60);   //move forward 2 hours
-  //openTime = now +(5*60);        //move forward somme min
+  //openTime = now +(5*60);        //move forward some min
   _myConfig.openTime = openTime;
   EEPROM_writeAnything(0, _myConfig);
 
